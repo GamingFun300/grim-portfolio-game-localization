@@ -53,9 +53,13 @@ function emit(key) {
   if (emitted.has(key)) return;
   emitted.add(key);
 
-  const source = en[key];
   const m = metaFor(key);
   const [base, suffix] = splitPlural(key);
+
+  let source = en[key];
+  if (source === undefined && suffix) {
+    source = en[`${base}.other`] || en[`${base}.one`] || '';
+  }
 
   let context = m.context || '';
   if (source === undefined && suffix) {
@@ -74,7 +78,6 @@ function emit(key) {
     '',
   ]);
 }
-
 for (const key of Object.keys(en)) {
   if (emitted.has(key)) continue;
   const [base, suffix] = splitPlural(key);

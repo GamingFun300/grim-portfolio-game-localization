@@ -27,7 +27,7 @@ if (!fs.existsSync(csvPath)) {
   process.exit(1);
 }
 
-const rows = parseCsv(fs.readFileSync(csvPath, 'utf8'));
+const rows = parseCsv(fs.readFileSync(csvPath, 'utf8').replace(/^\uFEFF/, ''));
 const header = rows.shift();
 const col = Object.fromEntries(header.map((h, i) => [h, i]));
 if (col[colName] === undefined) {
