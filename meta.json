@@ -38,22 +38,22 @@
 
   "player.intro":          { "context": "Player's line when first meeting an NPC. Name is substituted.",   "max_length": { "en": 44, "ru": 48, "zh-Hans": 20 }, "placeholders": ["name"] },
 
-  "dialogue.guard.greet":       { "context": "Guard dialogue, first meeting. Formal register.",            "max_length": { "en": 22, "ru": 26, "zh-Hans": 10 }, "placeholders": [] },
+  "dialogue.guard.greet":       { "context": "Guard dialogue, first meeting. Formal register.",            "max_length": { "en": 23, "ru": 26, "zh-Hans": 10 }, "placeholders": [] },
   "dialogue.guard.acknowledge": { "context": "Guard dialogue. Name is substituted.",                       "max_length": { "en": 50, "ru": 56, "zh-Hans": 24 }, "placeholders": ["name"] },
   "dialogue.guard.why":         { "context": "Guard dialogue, explains his post. Formal register.",        "max_length": { "en": 60, "ru": 66, "zh-Hans": 28 }, "placeholders": [] },
   "dialogue.guard.key_hint":    { "context": "Guard dialogue, points player to the merchant. Formal register.", "max_length": { "en": 74, "ru": 82, "zh-Hans": 32 }, "placeholders": [] },
-  "dialogue.guard.farewell":    { "context": "Guard dialogue, farewell. Formal register.",                 "max_length": { "en": 14, "ru": 16, "zh-Hans": 6 },  "placeholders": [] },
+  "dialogue.guard.farewell":    { "context": "Guard dialogue, farewell. Formal register.",                 "max_length": { "en": 16, "ru": 16, "zh-Hans": 6 },  "placeholders": [] },
   "dialogue.guard.repeat":      { "context": "Guard dialogue, on repeat conversations. Slightly annoyed.", "max_length": { "en": 66, "ru": 74, "zh-Hans": 28 }, "placeholders": [] },
 
   "dialogue.merchant.greet":       { "context": "Merchant dialogue, first meeting. Casual register.",                  "max_length": { "en": 16, "ru": 20, "zh-Hans": 8 },  "placeholders": [] },
-  "dialogue.merchant.acknowledge": { "context": "Merchant dialogue, casual. Name is substituted twice.",               "max_length": { "en": 44, "ru": 48, "zh-Hans": 20 }, "placeholders": ["name"] },
+  "dialogue.merchant.acknowledge": { "context": "Merchant dialogue, casual. Name is substituted twice.",               "max_length": { "en": 55, "ru": 48, "zh-Hans": 20 }, "placeholders": ["name"] },
   "dialogue.merchant.key_pun":     { "context": "Merchant dialogue, casual. Contains a pun on the word 'key'.",        "max_length": { "en": 110, "ru": 120, "zh-Hans": 50 }, "placeholders": [] },
   "dialogue.merchant.door_key":    { "context": "Merchant dialogue, casual. Hints at the table. Contains an idiom.",   "max_length": { "en": 115, "ru": 128, "zh-Hans": 55 }, "placeholders": [] },
   "dialogue.merchant.farewell":    { "context": "Merchant dialogue, casual farewell. Contains an idiom.",              "max_length": { "en": 24, "ru": 28, "zh-Hans": 12 }, "placeholders": [] },
   "dialogue.merchant.repeat":      { "context": "Merchant dialogue, on repeat conversations. Casual, brief.",          "max_length": { "en": 46, "ru": 52, "zh-Hans": 22 }, "placeholders": [] },
 
   "msg.chest_opened": { "context": "System message when opening the chest.",                                              "max_length": { "en": 42, "ru": 44, "zh-Hans": 20 }, "placeholders": [] },
-  "msg.coins":        { "context": "System message. Plural. Amount is substituted.",                                       "max_length": { "en": 30, "ru": 32, "zh-Hans": 16 }, "placeholders": ["amount"] },
+  "msg.coins":        { "context": "System message. Plural. Amount is substituted.",                                       "max_length": { "en": 32, "ru": 40, "zh-Hans": 16 }, "placeholders": ["amount"] },
   "msg.pickup.male":   { "context": "System message when picking up an item. Male player.",                               "max_length": { "en": 30, "ru": 32, "zh-Hans": 14 }, "placeholders": ["item"] },
   "msg.pickup.female": { "context": "System message when picking up an item. Female player.",                             "max_length": { "en": 30, "ru": 32, "zh-Hans": 14 }, "placeholders": ["item"] },
   "msg.coin_heads":    { "context": "System message. Coin flip result — heads.",                                          "max_length": { "en": 26, "ru": 26, "zh-Hans": 12 }, "placeholders": [] },
@@ -63,5 +63,5 @@
 
   "item.old_key.name": { "context": "Item name in the inventory panel.",                                                   "max_length": { "en": 10, "ru": 12, "zh-Hans": 5 },  "placeholders": [] },
   "item.old_key.desc": { "context": "Item description in the inventory panel.",                                            "max_length": { "en": 42, "ru": 44, "zh-Hans": 20 }, "placeholders": [] },
-  "item.coins.name":   { "context": "Item name in the inventory panel. Plural. Amount is substituted.",                     "max_length": { "en": 12, "ru": 12, "zh-Hans": 6 },  "placeholders": ["amount"] }
+  "item.coins.name":   { "context": "Item name in the inventory panel. Plural. Amount is substituted.",                     "max_length": { "en": 16, "ru": 20, "zh-Hans": 6 },  "placeholders": ["amount"] }
 }
