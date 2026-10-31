@@ -15,7 +15,7 @@
   "ui.you": "Ты",
   "npc.guard": "Стражник",
   "npc.merchant": "Торговец",
-  "action.talk_guard": "Погорить со стражником",
+  "action.talk_guard": "Поговорить со стражником",
   "action.talk_merchant": "Поговорить с торговцем",
   "action.examine_table": "Осмотреть стол",
   "action.look_closer": "Присмотреться",
