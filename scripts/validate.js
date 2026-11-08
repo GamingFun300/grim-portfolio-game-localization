@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 
 const root = path.resolve(__dirname, '..');
-const TARGET_LANGS = ['ru', 'zh-Hans'];
+const TARGET_LANGS = ['ru'];
 const PLURAL_CATS = ['zero', 'one', 'two', 'few', 'many', 'other'];
 
 function load(file) {

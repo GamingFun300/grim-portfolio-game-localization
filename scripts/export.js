@@ -14,7 +14,7 @@ const en = read('locales/en.json');
 const meta = fs.existsSync(path.join(root, 'meta.json')) ? read('meta.json') : {};
 
 /* Целевые локали. Если добавишь третью — допиши сюда и в app.js. */
-const TARGET_LANGS = ['ru', 'zh-Hans'];
+const TARGET_LANGS = ['ru'];
 
 const PLURAL_CATS = ['zero', 'one', 'two', 'few', 'many', 'other'];
 

@@ -2,7 +2,7 @@
 const LOCALES = [
   { code: 'en',       label: 'English' },
   { code: 'ru',       label: 'Русский' },
-  { code: 'zh-Hans',  label: '简体中文' },
+  // { code: 'zh-Hans',  label: '简体中文' },
 ];
 const DEFAULT_LANG = 'en';
 
