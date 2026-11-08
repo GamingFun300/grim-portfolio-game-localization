@@ -21,16 +21,6 @@ function placeholders(s) {
   return [...new Set((s.match(/\{(\w+)\}/g) || []).map(x => x.slice(1, -1)))].sort();
 }
 
-/* Убирает плюральный суффикс, чтобы проверить базовый ключ */
-function getBaseKey(key) {
-  const parts = key.split('.');
-  const last = parts[parts.length - 1];
-  if (PLURAL_CATS.includes(last)) {
-    return parts.slice(0, -1).join('.');
-  }
-  return key;
-}
-
 const en = load('en.json');
 const enKeys = new Set(Object.keys(en));
 
@@ -40,19 +30,29 @@ for (const lang of TARGET_LANGS) {
   const target = load(`${lang}.json`);
   const targetKeys = new Set(Object.keys(target));
 
-  /* 1. Пропущенные ключи (только базовые, без учета плюралов) */
+  /* 1. Пропущенные ключи */
   for (const k of enKeys) {
     if (!targetKeys.has(k) && !PLURAL_CATS.includes(k.split('.').pop())) {
       problems.push(`[${lang}] отсутствует ключ: ${k}`);
     }
   }
 
-  /* 2. Лишние ключи (проверяем базовый ключ) */
+  /* 2. Лишние ключи */
   for (const k of targetKeys) {
-    const base = getBaseKey(k);
-    if (!enKeys.has(base)) {
-      problems.push(`[${lang}] лишний ключ: ${k}`);
+    // Если такой точь-в-точь ключ есть в английском — всё ок.
+    if (enKeys.has(k)) continue;
+
+    // Если это плюрал, проверяем, есть ли в английском его база с .one или .other.
+    const parts = k.split('.');
+    const last = parts[parts.length - 1];
+    if (PLURAL_CATS.includes(last)) {
+      const base = parts.slice(0, -1).join('.');
+      if (enKeys.has(`${base}.one`) || enKeys.has(`${base}.other`)) {
+        continue; // Это легальная форма плюрала, не лишний ключ.
+      }
     }
+
+    problems.push(`[${lang}] лишний ключ: ${k}`);
   }
 
   /* 3. Плейсхолдеры */
