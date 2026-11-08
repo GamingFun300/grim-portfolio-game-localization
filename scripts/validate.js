@@ -1,14 +1,5 @@
 #!/usr/bin/env node
-/* Проверка целостности локалей.
-   Использование:
-     node scripts/validate.js          # проверить все целевые локали
-     node scripts/validate.js --fix    # показать, что можно дописать
-
-   Что проверяется:
-   - все ключи из en.json присутствуют в целевых локалях;
-   - нет лишних ключей, которых нет в en.json;
-   - плейсхолдеры в переводе совпадают с источником;
-   - для plural-баз есть все категории, которые требует целевой язык. */
+/* Проверка целостности локалей. */
 
 const fs = require('fs');
 const path = require('path');
@@ -30,6 +21,16 @@ function placeholders(s) {
   return [...new Set((s.match(/\{(\w+)\}/g) || []).map(x => x.slice(1, -1)))].sort();
 }
 
+/* Убирает плюральный суффикс, чтобы проверить базовый ключ */
+function getBaseKey(key) {
+  const parts = key.split('.');
+  const last = parts[parts.length - 1];
+  if (PLURAL_CATS.includes(last)) {
+    return parts.slice(0, -1).join('.');
+  }
+  return key;
+}
+
 const en = load('en.json');
 const enKeys = new Set(Object.keys(en));
 
@@ -39,21 +40,22 @@ for (const lang of TARGET_LANGS) {
   const target = load(`${lang}.json`);
   const targetKeys = new Set(Object.keys(target));
 
-  /* 1. Пропущенные ключи. */
+  /* 1. Пропущенные ключи (только базовые, без учета плюралов) */
   for (const k of enKeys) {
-    if (!targetKeys.has(k)) {
+    if (!targetKeys.has(k) && !PLURAL_CATS.includes(k.split('.').pop())) {
       problems.push(`[${lang}] отсутствует ключ: ${k}`);
     }
   }
 
-  /* 2. Лишние ключи. */
+  /* 2. Лишние ключи (проверяем базовый ключ) */
   for (const k of targetKeys) {
-    if (!enKeys.has(k)) {
+    const base = getBaseKey(k);
+    if (!enKeys.has(base)) {
       problems.push(`[${lang}] лишний ключ: ${k}`);
     }
   }
 
-  /* 3. Плейсхолдеры. */
+  /* 3. Плейсхолдеры */
   for (const k of enKeys) {
     if (!targetKeys.has(k)) continue;
     const srcPh = placeholders(en[k]);
@@ -64,9 +66,7 @@ for (const lang of TARGET_LANGS) {
       problems.push(`[${lang}] лишний плейсхолдер {${p}} в ключе: ${k}`);
   }
 
-  /* 4. Plural-категории.
-     Извлекаем базы plural-ключей из en.json и проверяем, что для
-     каждой есть все формы, требуемые целевым языком. */
+  /* 4. Plural-категории */
   const required = new Set(new Intl.PluralRules(lang).resolvedOptions().pluralCategories);
   const bases = new Set();
   for (const k of enKeys) {
