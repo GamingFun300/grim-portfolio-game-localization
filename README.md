@@ -4,7 +4,7 @@
 показаны живые задачи перевода: идиомы, каламбуры, регистр,
 омонимия, формы множественного числа.
 
-**Live версия:** https://gamingfun300.github.io/loc-playground/
+<a href="https://grim-portfolio-game-localization.vercel.app" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #7c9cff; color: #0d1020; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px;">👉 Перейти к проекту</a>
 
 **Автор перевода:** Виктория Чернявская
 
